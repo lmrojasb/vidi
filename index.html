@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f9fd">
+  <meta name="description" content="VIDI is a 48-month research project developing vision-and-language AI for more useful, conversational navigation assistance for people with visual impairments.">
+  <title>VIDI — Visual Dialogue for Navigation Guidance</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root{--paper:#f4f9fd;--white:#fff;--ink:#10283d;--muted:#526a7c;--blue:#2b78b8;--blue-dark:#174b73;--sky:#d9efff;--pale:#eaf5fc;--line:#d2e2ed;--mint:#b9e6dd}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 48px));margin:auto}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font:800 19px Manrope,sans-serif;letter-spacing:-.06em}.brandmark{width:33px;height:33px;border-radius:11px;background:var(--blue);display:grid;place-items:center;color:white;font-size:15px;letter-spacing:0}.brand span:last-child{font-weight:500;letter-spacing:-.03em;color:var(--muted)}.navlinks{display:flex;align-items:center;gap:30px;color:#466176;font-size:13px}.navlinks a:hover{color:var(--blue)}.nav-cta{padding:10px 15px;border:1px solid #b7d0e0;border-radius:6px;font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr;gap:34px;align-items:start;padding:65px 0 76px}.eyebrow,.label,.meta-label{font:500 10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.13em;color:#48799d}.eyebrow{display:flex;align-items:center;gap:10px}.eyebrow:before{content:'';width:22px;height:1px;background:var(--blue)}.hero h1{font:700 clamp(48px,6.1vw,78px)/1 Manrope,sans-serif;letter-spacing:-.075em;margin:24px 0 20px;max-width:760px}.hero h1 em{font-style:normal;color:var(--blue)}.hero-copy{font-size:16px;line-height:1.75;color:var(--muted);max-width:650px;margin:0}.hero-actions{display:flex;align-items:center;gap:22px;margin-top:29px}.button{display:inline-flex;align-items:center;gap:20px;background:var(--blue-dark);color:white;padding:13px 17px;border-radius:6px;font-weight:600;font-size:13px;transition:background .2s}.button:hover{background:var(--blue)}.text-link{font-size:13px;font-weight:600;border-bottom:1px solid #9bb6c8;padding:7px 0}
+    .visual{height:390px;background:linear-gradient(145deg,#e4f4ff,#cce9fb);border:1px solid #c4dfef;border-radius:18px;position:relative;overflow:hidden;display:grid;place-items:center}.visual:before,.visual:after{content:'';position:absolute;border:1px solid rgba(54,126,174,.15);border-radius:50%;width:400px;height:400px}.visual:after{width:290px;height:290px}.scene{position:relative;width:72%;height:65%;z-index:1;background:rgba(255,255,255,.72);border:1px solid #a9ccdf;border-radius:12px;box-shadow:0 25px 70px #235f8420;overflow:hidden}.scene:before{content:'';position:absolute;left:49%;top:0;height:100%;border-left:1px solid #c4dbe7}.scene:after{content:'';position:absolute;left:0;top:51%;width:100%;border-top:1px solid #c4dbe7}.room-label{position:absolute;left:15px;top:13px;font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.12em;color:#66849a}.object{position:absolute;z-index:2;border-radius:9px;background:#b3dceb}.object.seat{left:12%;bottom:16%;width:31%;height:22%;background:#8ebbd0;border-radius:14px 14px 7px 7px}.object.table{right:13%;bottom:20%;width:23%;height:10%;border-radius:50%;background:#b8d8e5}.object.target{top:27%;right:23%;width:38px;height:38px;border-radius:50%;background:var(--mint);border:7px solid white;box-shadow:0 0 0 1px #59a99b}.route{position:absolute;z-index:3;left:37%;top:47%;width:30%;height:26%;border-left:2px dashed #348eae;border-top:2px dashed #348eae;border-radius:50% 0 0 0;transform:rotate(-15deg)}.bubble{position:absolute;z-index:4;background:white;padding:12px 15px;border-radius:8px;box-shadow:0 9px 24px #1b4f6a20;font-size:11px;line-height:1.5;color:#35566d}.bubble strong{display:block;font-size:12px;color:var(--ink);margin-top:3px}.bubble.a{left:4%;top:11%}.bubble.b{right:4%;bottom:10%}.bubble .meta-label{font-size:8px;color:#648ba4}.spark{position:absolute;z-index:4;color:var(--blue);font-size:20px}.spark.one{right:14%;top:13%}.spark.two{left:15%;bottom:16%;font-size:14px}.visual-caption{position:absolute;z-index:4;bottom:15px;left:0;right:0;text-align:center;color:#577991;font:9px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+    .facts{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:15px}.fact{padding:18px 21px;border-right:1px solid var(--line)}.fact:last-child{border:0}.fact strong{display:block;font:700 17px Manrope,sans-serif;letter-spacing:-.03em}.fact span{display:block;color:var(--muted);font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-top:5px}
+    section{scroll-margin-top:30px}.section{padding:96px 0}.intro{display:grid;grid-template-columns:.65fr 1.35fr;gap:82px}.section h2{font:650 clamp(33px,4vw,49px)/1.08 Manrope,sans-serif;letter-spacing:-.065em;margin:13px 0 18px}.intro p{font-size:16px;line-height:1.85;color:var(--muted);margin:0;max-width:760px}.note{border-left:2px solid #65afbd;padding:2px 0 2px 15px;margin-top:23px;font-size:12px;line-height:1.7;color:#5b7689;max-width:600px}.objectives{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:38px}.objective{padding:21px 20px 23px;background:#fff;border:1px solid var(--line);border-radius:9px;min-height:174px}.objective .num{font:10px 'DM Mono',monospace;color:var(--blue)}.objective h3{font:650 15px Manrope,sans-serif;letter-spacing:-.02em;margin:22px 0 8px}.objective p{font-size:12px;line-height:1.65;color:var(--muted);margin:0}
+    .plan{background:var(--blue-dark);color:#f6fbff;padding:88px 0 93px}.plan .label{color:#a9d9f2}.section-head{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:39px}.plan h2{max-width:590px;margin-bottom:0}.plan .lead{max-width:350px;color:#c3d9e8;font-size:14px;line-height:1.75;margin:0 0 4px}.wp-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #557a94;border-left:1px solid #557a94}.wp{padding:20px 22px 21px;border-right:1px solid #557a94;border-bottom:1px solid #557a94;min-height:158px}.wp .num{font:10px 'DM Mono',monospace;color:#a9d9f2}.wp h3{font:650 17px Manrope,sans-serif;letter-spacing:-.03em;margin:18px 0 7px}.wp p{font-size:12px;line-height:1.65;color:#c3d9e8;margin:0;max-width:320px}.project-note{margin-top:20px;color:#b6d2e3;font-size:11px;line-height:1.65}
+    .principles{display:grid;grid-template-columns:.8fr 1.2fr;gap:75px}.principles-copy p{color:var(--muted);font-size:14px;line-height:1.8;max-width:430px}.research-list{border-top:1px solid var(--line)}.research-item{padding:17px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:12px}.research-item .num{font:10px 'DM Mono',monospace;color:var(--blue);padding-top:3px}.research-item h3{margin:0 0 5px;font:650 14px Manrope,sans-serif}.research-item p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}.partners{background:#e7f3fa;padding:61px 0}.partners-inner{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px;align-items:center}.partners h2{font:650 28px Manrope,sans-serif;letter-spacing:-.05em;margin:9px 0}.partners p{color:var(--muted);font-size:12px;line-height:1.7;margin:0}.partner-names{display:flex;flex-wrap:wrap;gap:10px}.partner-names span,.partner-names a{padding:11px 15px;border:1px solid #bfd8e6;border-radius:6px;background:#f8fcff;font:600 12px Manrope,sans-serif;color:#345a74}.partner-names a:hover{border-color:#78aac8;color:var(--blue-dark)}.partner-names .partner-jobs{background:#174b73;color:white;border-color:#174b73}.partner-names .partner-jobs:hover{background:#2b78b8;color:white}.footer{padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;color:#637c8e;font-size:10px}.footer .brand{font-size:15px;color:var(--ink)}.footer .brandmark{width:27px;height:27px;font-size:13px}.footer-note{font:9px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;gap:40px;padding-top:54px}.visual{height:min(390px,65vw)}.intro{grid-template-columns:1fr;gap:18px}.objectives{grid-template-columns:repeat(2,1fr)}.section-head{display:block}.plan .lead{margin-top:18px}.wp-grid{grid-template-columns:repeat(2,1fr)}.principles{grid-template-columns:1fr;gap:30px}.partners-inner{grid-template-columns:1fr;gap:25px}.navlinks{gap:17px}.navlinks a:not(.nav-cta){display:none}}
+    @media(max-width:560px){.wrap{width:calc(100% - 36px)}.nav{height:68px}.hero{padding:49px 0 55px}.hero h1{font-size:51px}.hero-actions{align-items:flex-start;flex-direction:column;gap:13px}.visual{height:290px}.scene{width:77%;height:61%}.bubble{padding:9px 10px;font-size:9px}.bubble strong{font-size:10px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(2){border-right:0}.fact:nth-child(-n+2){border-bottom:1px solid var(--line)}.section{padding:70px 0}.objectives{grid-template-columns:1fr}.objective{min-height:0}.objective h3{margin-top:14px}.plan{padding:70px 0}.wp-grid{grid-template-columns:1fr}.wp{min-height:0;padding:18px}.wp h3{margin:13px 0 6px}.footer{align-items:flex-start;flex-direction:column}}
+    .visual{height:auto;display:block;margin:0;overflow:hidden;background:#fff;border-radius:12px;box-shadow:0 20px 55px #235f8415}.visual:before,.visual:after{display:none}.figure-scroll{width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#79aac8 #e7f3fa}.figure-scroll::-webkit-scrollbar{height:10px}.figure-scroll::-webkit-scrollbar-track{background:#e7f3fa}.figure-scroll::-webkit-scrollbar-thumb{background:#79aac8;border:2px solid #e7f3fa;border-radius:8px}.figure-scroll a{display:block;width:max-content}.pdf-figure{display:block;width:1228px;max-width:none;height:auto}.visual-caption{padding:11px 14px;background:#edf7fc;color:#52768c;font:9px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="#top" aria-label="VIDI home"><span class="brandmark">v.</span> vidi <span>project</span></a>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#project">About</a><a href="#research">Research plan</a><a href="#team">Partners</a><a href="open-positions.html" class="nav-cta">Open positions ↗</a></nav>
+  </header>
+  <main id="top">
+
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">ANR research · Artificial intelligence and data science</div>
+        <h1 id="hero-title">A dialogue that helps you <em>find your way.</em></h1>
+        <p class="hero-copy">VIDI is a research project exploring how vision-and-language AI can support visual impaired people (VIP) through ongoing, context-aware navigation dialogue.</p>
+        <div class="hero-actions"><a class="button" href="#project">Discover VIDI <span>↘</span></a><a class="text-link" href="#research">See the research plan</a></div>
+      </div>
+    </section>
+    <div class="wrap facts" aria-label="Project facts">
+      <div class="fact"><strong>48 months</strong><span>Project duration</span></div>
+      <div class="fact"><strong>ANR AAPG 2026</strong><span>PRCE · CE23</span></div>
+      <div class="fact"><strong>4 partners</strong><span>Orange · ENPC · Inria · IRIT</span></div>
+    </div>
+    <section class="wrap section" id="scenario">
+      <figure class="visual">
+        <div class="figure-scroll" tabindex="0" role="region" aria-label="Scrollable project figure; use the horizontal scrollbar to view the full image">
+          <a href="assets/vidi-scenario.png" target="_blank" rel="noopener" aria-label="Open the first project figure at full size">
+            <img class="pdf-figure" src="assets/vidi-scenario.png" alt="The project proposal’s first figure: a hotel-room floor plan and three stages of dialogue as a visually impaired user asks for help finding a drink. The guide helps them locate and approach a minibar, then choose a drink.">
+          </a>
+        </div>
+        <!--figcaption class="visual-caption">Illustrative scenario from the project proposal · Scroll sideways or open the image for full size</figcaption-->
+      </figure>
+    </section>
+    <section class="wrap section" id="project">
+      <div class="intro">
+        <div><div class="label">01 / The project</div><h2>From seeing a scene to navigating it together.</h2></div>
+        <div><p>VIDI (VIsual DIalogue for visually impaired navigation guidance) aims to advance AI assistance for people with visual impairments. Using video from audio-enabled wearable cameras and the user’s spoken input, the research will explore vision-and-language models that can answer questions, warn about environmental changes, and guide someone toward a target object.</p><div class="note">The project focuses on text generation from multimodal inputs. Speech recognition and speech synthesis are considered as parts of a future real-world deployment pipeline.</div></div>
+      </div>
+      <div class="objectives" aria-label="Project objectives">
+        <article class="objective"><span class="num">OBJECTIVE 01</span><h3>Collect user-centered data</h3><p>Gather multimodal assistance dialogues with people with visual impairments and their guides.</p></article>
+        <article class="objective"><span class="num">OBJECTIVE 02</span><h3>Navigate to goals</h3><p>Develop navigation models that generalize across environments and find obstacle-free routes to objects.</p></article>
+        <article class="objective"><span class="num">OBJECTIVE 03</span><h3>Build situated dialogue</h3><p>Enable models to use visual context and conversation to assist throughout a task.</p></article>
+        <article class="objective"><span class="num">OBJECTIVE 04</span><h3>Evaluate interactions</h3><p>Develop quantitative and qualitative ways to assess dialogue quality in assistance tasks.</p></article>
+      </div>
+    </section>
+    <section class="plan" id="research">
+      <div class="wrap">
+        <div class="section-head"><div><div class="label">02 / Research plan</div><h2>Six work packages, from data to human evaluation.</h2></div><p class="lead">A coordinated research programme brings together user-centered data collection, navigation, dialogue modelling, a proof of concept, and evaluation.</p></div>
+        <div class="wp-grid">
+          <article class="wp"><span class="num">WP0 · THROUGHOUT</span><h3>Project management</h3><p>Coordinate the consortium, ethics, administration and data management across 48 months.</p></article>
+          <article class="wp"><span class="num">WP1 · DATA</span><h3>Data collection</h3><p>Co-design indoor scenarios and collect dialogues with 25 visually impaired participants and their guides, subject to ethics approval.</p></article>
+          <article class="wp"><span class="num">WP2 · NAVIGATION</span><h3>Vision-and-language navigation</h3><p>Study generalizable navigation and planning methods for reaching objects in diverse environments.</p></article>
+          <article class="wp"><span class="num">WP3 · DIALOGUE</span><h3>Situated multimodal dialogue</h3><p>Develop models that connect long-form visual understanding with conversation, grounding and task planning.</p></article>
+          <article class="wp"><span class="num">WP4 · PROOF OF CONCEPT</span><h3>Integrate a prototype</h3><p>Plan a device-to-model pipeline combining visual input, speech recognition, navigation and dialogue models, and spoken output.</p></article>
+          <article class="wp"><span class="num">WP5 · HUMAN EVALUATION</span><h3>Assess the experience</h3><p>Evaluate the prototype’s utility and usability with approximately 15 participants using quantitative and qualitative methods.</p></article>
+        </div>
+        <p class="project-note">The data collection is planned for indoor, semi-realistic settings, including the Maison Intelligente de Blagnac and Orange Innovation in Lannion. The project’s methods may inform outdoor applications as well.</p>
+      </div>
+    </section>
+    <section class="wrap section" id="principles">
+      <div class="principles">
+        <div class="principles-copy"><div class="label">03 / What the research explores</div><h2>Useful guidance depends on shared understanding.</h2><p>VIDI investigates how assistance can stay responsive as the scene changes and a task unfolds. Its research hypotheses emphasize representative user-centered data, robust navigation, and dialogue that can clarify, plan and adapt.</p></div>
+        <div class="research-list">
+          <article class="research-item"><span class="num">01</span><div><h3>Conversation can work both ways</h3><p>A guide may answer, ask for clarification, or proactively warn about a change; the user can also initiate or redirect the exchange.</p></div></article>
+          <article class="research-item"><span class="num">02</span><div><h3>Grounding builds mutual understanding</h3><p>The system should establish what it sees, what the person means, and whether a direction or object has been understood.</p></div></article>
+          <article class="research-item"><span class="num">03</span><div><h3>Navigation needs memory and planning</h3><p>Models will be studied for their ability to generalize, handle dynamic environments and complete multi-step guidance tasks.</p></div></article>
+          <article class="research-item"><span class="num">04</span><div><h3>Research outputs should be reusable</h3><p>The project plans to share software, models, datasets and evaluation resources in line with data governance requirements.</p></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="partners" id="team">
+      <div class="wrap partners-inner">
+        <div><div class="label">04 / Consortium</div><h2>Research across four partners.</h2><p>Coordinated by Lina Rojas-Barahona (Orange), VIDI combines expertise in dialogue, computer vision, navigation, accessibility and human evaluation.</p></div>
+        <div class="partner-names" aria-label="Project partners"><a href="orange.html">Orange · Coordinator ↗</a><a href="enpc.html">ENPC ↗</a><a href="inria.html">Inria Paris ↗</a><a href="irit.html">IRIT · Université de Toulouse ↗</a><a href="open-positions.html" class="partner-jobs">See the planned open positions ↗</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap footer"><a class="brand" href="#top"><span class="brandmark">v.</span> vidi <span>project</span></a><span>VIsual DIalogue for visually impaired navigation guidance</span><span class="footer-note">ANR AAPG 2026 · PRCE</span></footer>
+</body>
+</html>
